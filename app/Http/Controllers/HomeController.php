@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -61,5 +62,21 @@ class HomeController extends Controller
         }
         return response()->json(["status" => true, "message" => "Students Reordered"]);
     }
+
+    public function PositionsStudents(Request $request)
+    {
+        $position = $request->positions;
+        $i = 1;
+
+        foreach ($position as $k => $v) {
+            $student = Student::where('id', $i)->update([
+                "order" => $v,
+            ]);
+            $i++;
+        }
+
+        return response()->json(["status" => true, "message" => "Students Reordered"]);
+    }
+
 
 }

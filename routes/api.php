@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [\App\Http\Controllers\HomeController::class, 'CreateOrLogin']);
 
 Route::middleware(['auth:api','AdminAuth'])->group(function () {
-
     Route::apiResource('Student', 'App\Http\Controllers\StudentController');
     Route::apiResource('School', 'App\Http\Controllers\SchoolController');
 });
